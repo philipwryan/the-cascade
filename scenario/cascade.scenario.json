@@ -1,0 +1,367 @@
+{
+  "scenario_id": "the-cascade",
+  "title": "The Cascade",
+  "description": "A critical Tier-1 automotive supplier, Apex Precision Parts (APP), has gone dark. No shipments, no communication. Two assembly plants are 48 hours from production stoppage. The cause is unknown. Two specialists \u2014 a Supply Chain Manager and a Finance Analyst \u2014 must independently analyze their data, collaborate, and identify the root cause before the line shuts down.",
+  "crisis_briefing": "PRIORITY ALERT \u2014 TIER 1 SUPPLIER FAILURE\n\nApex Precision Parts (APP) supplies precision brake assemblies to Plants A and B. Shipments ceased 18 days ago. All contact attempts have failed. Plants A and B have 48 hours of buffer inventory remaining.\n\nAt current production rates, a stoppage will cost $480,000 per hour and affect 4,200 workers.\n\nYour teams have been activated. Find the root cause. Propose a coordinated response.",
+  "time_limit_minutes": 60,
+  "checkpoint": {
+    "trigger_clues_total": 4,
+    "message": "\u2b1b WAR ROOM CHECKPOINT \u2b1b\n\nBoth teams have now gathered significant evidence. Before proceeding to your escape submission, you must synthesize your findings.\n\nEach player: Post your current hypothesis to the War Room NOW. Tag what you know, what the other team needs to hear, and what you still can't explain.\n\nKey questions for discussion:\n\u2022 What caused APP to stop production?\n\u2022 What is the specific financial mechanism?\n\u2022 What must the executive team do in the next 24 hours?\n\nOnce both players have shared their analysis, proceed to the Escape tab."
+  },
+  "injections": [
+    {
+      "id": "oem_escalation",
+      "type": "time_elapsed",
+      "seconds": 1500,
+      "message": "\ud83d\udea8 NEW DEVELOPMENT \u2014 OEM ESCALATION\n\nOEM Tier-0 procurement has been formally notified of the supply risk. They are invoking Force Majeure monitoring clauses. Contractual penalties of $750,000/day begin automatically if production stops.\n\nThis does NOT change the root cause \u2014 but your recommended action plan must now include:\n\u2022 OEM communication with realistic timeline\n\u2022 Production stoppage risk mitigation (weekend overtime, buffer drawdown)\n\u2022 Executive escalation chain to lender (First Industrial Bank)\n\nFactor this escalation into your escape submission."
+    }
+  ],
+  "personas": {
+    "supply_chain_manager": {
+      "name": "Supply Chain Manager",
+      "title": "Director, Supply Chain Operations",
+      "description": "You have access to supplier logistics data, shipment records, inventory levels, operational alerts, and supplier communications history. You can see what is happening on the ground \u2014 but not why.",
+      "briefing": "Your dashboard shows Apex Precision Parts has missed 3 consecutive delivery windows. Field contacts are not responding. Your alternate supplier assessment is not promising. The clock is running. Dig into your data and share what you find with the Finance team in the War Room.",
+      "files": [
+        {
+          "id": "shipment_log_q4",
+          "name": "APP_Shipment_Log_Q4_2024.csv",
+          "type": "csv",
+          "folder": "operations",
+          "modified": "2024-11-14",
+          "is_clue": true,
+          "clue_id": "clue_shipments_stopped",
+          "clue_weight": "primary",
+          "gate_question": {
+            "question": "Based on this shipment log, on what date did APP miss its FIRST delivery?",
+            "options": [
+              "A) October 21, 2024",
+              "B) October 28, 2024",
+              "C) November 4, 2024",
+              "D) November 11, 2024"
+            ],
+            "correct": "B",
+            "hint": "Look at the Status column \u2014 find the first row where status changed from DELIVERED to MISSED and note the Expected_Delivery date."
+          },
+          "content": "APEX PRECISION PARTS \u2014 SHIPMENT LOG Q4 2024\nGenerated: 2024-11-14 06:00 UTC\n\nDate,PO_Number,Part_SKU,Description,Quantity,Expected_Delivery,Actual_Delivery,Status,Notes\n2024-10-01,PO-2024-4651,BRK-A-2201,Brake Assembly Type A,2400,2024-10-03,2024-10-03,DELIVERED,On time\n2024-10-07,PO-2024-4668,BRK-A-2201,Brake Assembly Type A,2400,2024-10-09,2024-10-09,DELIVERED,On time\n2024-10-14,PO-2024-4685,BRK-A-2201,Brake Assembly Type A,2400,2024-10-16,2024-10-16,DELIVERED,On time\n2024-10-21,PO-2024-4702,BRK-A-2201,Brake Assembly Type A,2400,2024-10-23,2024-10-23,DELIVERED,On time\n2024-10-28,PO-2024-4719,BRK-A-2201,Brake Assembly Type A,2400,2024-10-30,---,MISSED,No shipment received. Supplier non-responsive to calls and email.\n2024-11-04,PO-2024-4736,BRK-A-2201,Brake Assembly Type A,2400,2024-11-06,---,MISSED,Follow-up escalated. Supplier comms dark. Site visit attempted \u2014 facility locked during business hours.\n2024-11-11,PO-2024-4753,BRK-A-2201,Brake Assembly Type A,2400,2024-11-13,---,MISSED,Escalated to VP Procurement. No resolution. Plants A/B buffer inventory: 48 hours remaining.\n\nSUMMARY:\n  Deliveries Oct 1 - Oct 23: NORMAL (8/8 on time)\n  Deliveries Oct 28 - present: 3 CONSECUTIVE MISSES\n  First miss date: October 28, 2024\n  Days since last delivery: 18\n  Open PO value at risk: $1,440,000\n  Production line exposure: Plants A and B"
+        },
+        {
+          "id": "supplier_inventory_snapshot",
+          "name": "APP_Site_Inventory_Snapshot.txt",
+          "type": "txt",
+          "folder": "operations",
+          "modified": "2024-11-02",
+          "is_clue": true,
+          "clue_id": "clue_inventory_zeroed",
+          "clue_weight": "supporting",
+          "gate_question": {
+            "question": "The field report found the facility running at minimal capacity with guards refusing entry 'per management instruction.' What does this most likely indicate?",
+            "options": [
+              "A) A workplace safety incident \u2014 management is restricting access during an OSHA investigation",
+              "B) APP is relocating their production to a different facility in another state",
+              "C) Management has given explicit instructions to limit information \u2014 this is a deliberately managed, controlled situation",
+              "D) A labor dispute has led workers to strike and management locked down the facility"
+            ],
+            "correct": "C",
+            "hint": "Read the guard's exact words and D. Kowalski's brief answer. A company in an accident or labor dispute behaves differently \u2014 they communicate. Deliberate silence from multiple levels of management has a specific cause."
+          },
+          "content": "# SUPPLIER SITE ASSESSMENT \u2014 FIELD REPORT\nApex Precision Parts LLC \u2014 4401 Industrial Parkway, Lansing, MI 48912\n**Conducted by:** Regional Supplier Quality Engineer (remote visual + contact attempt)\n**Date:** November 2, 2024\n\n\n## OBSERVATIONS\n\n\nFacility Status:\n  - Parking lot: 3 vehicles visible (normal headcount ~180 employees)\n  - Loading dock: No activity. Trucks not present.\n  - Lights: Minimal lighting in main production bay\n  - Security: Guard present, refused entry. Cited 'management instruction.'\n\nInventory Intelligence (from last formal audit, October 15):\n  **Raw Materials (HR Steel Coil):** CRITICAL \u2014 bins confirmed empty as of Nov 1 visual\n  **Work-In-Progress:** ZERO \u2014 production floor idle\n  Finished Goods (BRK-A-2201):    ZERO \u2014 outbound staging area empty\n\nContact Attempts:\n  - Operations Manager J. Briggs: Voicemail only. No callback.\n  - Plant Manager D. Kowalski: Voicemail only. No callback.\n  - Main switchboard: Automated message: 'Our offices are temporarily operating with reduced capacity.'\n\n\n## ASSESSMENT\n\nApex Precision Parts appears to have ceased production operations. The facility has not been abandoned, but active manufacturing has halted. Raw material inventory is depleted with no evidence of incoming replenishment orders.\n\nThis is NOT a logistics delay. This is a production stoppage at the source.\n\n**Recommended escalation:** Immediate cross-functional response including Finance and Procurement leadership."
+        },
+        {
+          "id": "apex_contact_log",
+          "name": "APP_Communications_Log.txt",
+          "type": "txt",
+          "folder": "operations",
+          "modified": "2024-11-14",
+          "is_clue": true,
+          "clue_id": "clue_comms_dark",
+          "clue_weight": "supporting",
+          "gate_question": {
+            "question": "18 days of silence. D. Kowalski's only statement was 'We'll be in touch shortly' before hanging up. What does this pattern of deliberate non-communication most strongly suggest?",
+            "options": [
+              "A) APP is renegotiating their supply contract and legal counsel advised confidentiality",
+              "B) APP is aware of the situation and has been advised \u2014 likely by lenders or legal counsel \u2014 to limit external communications while a financial crisis is managed",
+              "C) APP's communications team is understaffed after recent layoffs and cannot respond faster",
+              "D) APP is preparing a force majeure claim and has gone quiet to preserve their legal position"
+            ],
+            "correct": "B",
+            "hint": "Consider: who tells a company to stop talking to their customers? Lawyers and bankers do \u2014 when a financial covenant has been breached and formal processes are underway. The message was read (see Nov 1 email) but not responded to."
+          },
+          "content": "# SUPPLIER COMMUNICATIONS LOG \u2014 APEX PRECISION PARTS\n**Period:** October 28 \u2013 November 14, 2024\n\nDate        | Contact Attempted        | Method   | Outcome\n------------|--------------------------|----------|---------\n2024-10-29  | J. Briggs (Ops Mgr)      | Phone    | No answer. VM left.\n2024-10-29  | D. Kowalski (Plant Mgr)  | Email    | No reply.\n2024-10-30  | Main Switchboard         | Phone    | Automated message. Unusual.\n2024-10-31  | R. Santos (Acct Mgr)     | Phone    | No answer. VM left.\n2024-11-01  | J. Briggs (Ops Mgr)      | Email    | No reply. Read receipt confirmed open.\n2024-11-01  | D. Kowalski (Plant Mgr)  | Phone    | Answered briefly: 'We'll be in touch shortly.' Call ended.\n2024-11-04  | R. Santos (Acct Mgr)     | Email    | Bounce (auto-reply: 'Out of office \u2014 no return date specified')\n2024-11-05  | Main Switchboard         | Phone    | No answer.\n2024-11-06  | J. Briggs (Ops Mgr)      | Phone    | No answer.\n2024-11-07  | Emergency Escalation     | Email    | Sent to CEO@apexprecision.com. No reply.\n2024-11-11  | Site Visit               | In-person| Facility operating at minimal capacity. Guard refused entry per 'management instruction.' No communication.\n2024-11-12  | Legal / Contract Counsel | Internal | Breach of supply agreement confirmed. Demand letter prepared but not yet sent pending investigation.\n2024-11-14  | All channels             | \u2014        | SILENCE. 18 days since last delivery.\n\n> **NOTE:** On November 1, D. Kowalski said 'We'll be in touch shortly' \u2014 this is the last substantive contact. The phrasing suggests they are aware of the situation but have been instructed not to communicate. This is unusual for a supplier relationship of 9 years."
+        },
+        {
+          "id": "logistics_weather_alert",
+          "name": "Midwest_Logistics_Disruption_Alert.txt",
+          "type": "txt",
+          "folder": "alerts",
+          "modified": "2024-10-19",
+          "is_clue": false,
+          "clue_id": null,
+          "clue_weight": null,
+          "content": "# LOGISTICS DISRUPTION ALERT \u2014 REGION: MIDWEST\n**Issued by:** Supply Chain Risk Management\n**Date:** October 19, 2024\n**Status:** RESOLVED\n\n## SUMMARY:\n\nA significant weather system (Winter Storm Cleo) impacted freight movement across Michigan, Indiana, and Ohio from October 15\u201318, 2024.\n\n## IMPACT ON OPERATIONS:\n\n  - 3-day average delivery delay for Midwest suppliers\n  - Road freight carriers operating at 60% capacity Oct 15-17\n  - I-94 and I-75 corridors affected\n\n## RESOLUTION:\n\n  All disrupted shipments resolved by October 22, 2024.\n  **Apex Precision Parts:** October 23 delivery confirmed on time. No ongoing impact.\n\n> **ACTION REQUIRED:** None. Situation resolved.\n\n> **NOTE:** This alert is retained for reference. The weather event has NO bearing on current supply disruption which began October 28 \u2014 5 days after full resolution of this event."
+        },
+        {
+          "id": "alternate_supplier_assessment",
+          "name": "Alternate_Supplier_Assessment_BRK-A-2201.txt",
+          "type": "txt",
+          "folder": "operations",
+          "modified": "2024-11-10",
+          "is_clue": false,
+          "clue_id": null,
+          "clue_weight": null,
+          "content": "# ALTERNATE SUPPLIER ASSESSMENT\n**Part:** BRK-A-2201 (Precision Brake Assembly, Hydraulic, Type A)\n**Prepared by:** Global Sourcing Team\n**Date:** November 10, 2024\n\n**CURRENT SUPPLIER:** Apex Precision Parts (sole-source)\n\n## ASSESSMENT OF ALTERNATIVES:\n\n\n1. Bremwald Precision (Germany)\n   - Capability: Yes (similar product line)\n   - Lead time to qualify: 8\u201312 months\n   - Current capacity: Committed to EU OEM contracts through Q2 2025\n   - Verdict: NOT VIABLE (short-term)\n\n2. Highbridge Components (Ontario, Canada)\n   - Capability: Partial (Type B only, not Type A geometry)\n   - Engineering rework required: Significant (3\u20136 months minimum)\n   - Verdict: NOT VIABLE\n\n3. Flex-Source (Mexico City)\n   - Capability: Under evaluation\n   - IATF 16949 certification: Not yet achieved\n   - Verdict: NOT VIABLE\n\n## CONCLUSION:\n\nThere is NO qualified alternate supplier for BRK-A-2201 that can deliver within a timeframe that prevents production stoppage.\n\nThe only path to avoiding a line stoppage is restoring Apex Precision Parts to active production.\n\nThis is a sole-source exposure risk that should be flagged for the strategic sourcing review."
+        },
+        {
+          "id": "quality_holdback_q2",
+          "name": "APP_Quality_Holdback_Q2_2024.txt",
+          "type": "txt",
+          "folder": "reports",
+          "modified": "2024-09-03",
+          "is_clue": false,
+          "clue_id": null,
+          "clue_weight": null,
+          "content": "# SUPPLIER QUALITY CORRECTIVE ACTION REPORT\n**Supplier:** Apex Precision Parts\n**Part:** BRK-A-2201\n**Date Opened:** June 12, 2024\n**Date Closed:** August 28, 2024\n\n## ISSUE SUMMARY:\n\nDimensional non-conformance detected in Lot #Q2-4412 (2,400 units). Caliper bore diameter 0.003\" outside tolerance on 7% of inspected units.\n\n**ROOT CAUSE:** Tooling wear on CNC Cell 3. Machine maintenance interval exceeded due to operator scheduling.\n\n## CORRECTIVE ACTION:\n\n  - Cell 3 tooling replaced\n  - Preventive maintenance schedule updated\n  - 100% inspection implemented for 90 days\n  - Lot #Q2-4412 scrapped and replaced at supplier cost\n\n## VERIFICATION:\n\n  Zero non-conformances in 12 subsequent lots (Aug 28 verification).\n\n**STATUS:** CLOSED \u2014 No ongoing quality concern.\n\n> **NOTE:** This Q2 quality event is UNRELATED to the current supply disruption. APP's quality performance since August has been exemplary (PPM = 0)."
+        },
+        {
+          "id": "payment_terms_supplier_notification",
+          "name": "Payment_Terms_Change_Supplier_Notice.txt",
+          "type": "txt",
+          "folder": "alerts",
+          "modified": "2024-04-15",
+          "is_clue": true,
+          "clue_id": "clue_payment_terms_changed",
+          "clue_weight": "connector",
+          "gate_question": {
+            "question": "Our payment terms to APP changed to Net-60 in May 2024. What is the direct working capital impact on APP as a supplier?",
+            "options": [
+              "A) APP receives payments 30 days later than before \u2014 roughly one additional month of invoices is always 'in transit' and unavailable",
+              "B) APP must now invoice us 60 days in advance of shipping",
+              "C) APP's invoice amounts are reduced by 60% under the new terms",
+              "D) The change only applies to new purchase orders, not the existing relationship"
+            ],
+            "correct": "A",
+            "hint": "If APP was used to being paid in 30 days and is now waiting 60 days, think about how many months of completed deliveries are always sitting as unpaid receivables on their books."
+          },
+          "content": "\n## OFFICIAL SUPPLIER NOTIFICATION\n\n\nTO: Apex Precision Parts LLC\n**ATTN:** R. Santos, Account Manager\n**FROM:** Global Procurement Operations\n**DATE:** April 15, 2024\nRE: Payment Terms Standardization \u2014 Effective May 1, 2024\n\nDear Apex Precision Parts,\n\nAs part of our Working Capital Optimization Program, we are standardizing payment terms across our strategic supplier base.\n\nEffective for all invoices dated May 1, 2024 and later, your payment terms will transition from:\n\n  **CURRENT:** Net-30\n  **NEW:** Net-60\n\nThis change applies to all purchase orders issued under your supplier agreement.\n\nWe value our 9-year partnership with Apex Precision Parts and appreciate your support of this initiative.\n\nIf you have questions, please contact your assigned Procurement Representative.\n\nSincerely,\nGlobal Procurement Operations\n\n---\n> **NOTE:** This notification is filed in supplier correspondence. The Net-60 terms have been in effect since May 1, 2024 \u2014 approximately 6.5 months. Review in context of any financial stress signals from APP."
+        },
+        {
+          "id": "production_impact_assessment",
+          "name": "Production_Impact_Assessment_CRITICAL.txt",
+          "type": "txt",
+          "folder": "operations",
+          "modified": "2024-11-14",
+          "is_clue": false,
+          "clue_id": null,
+          "clue_weight": null,
+          "content": "# PRODUCTION IMPACT ASSESSMENT \u2014 CRITICAL PRIORITY\n**Prepared by:** Plant Operations, Plants A & B\n**Date:** November 14, 2024\n\n## CURRENT SITUATION:\n\n  **Part at risk:** BRK-A-2201 (Brake Assembly, Hydraulic, Type A)\n  **Supplier:** Apex Precision Parts (SOLE SOURCE)\n  Days since last delivery: 18\n  **Current inventory:** 2,880 units (1.5 days at current consumption rate)\n\n## PRODUCTION STOPPAGE TIMELINE:\n\n  **Plant A buffer exhaustion:** ~44 hours from report generation\n  **Plant B buffer exhaustion:** ~51 hours from report generation\n\n## FINANCIAL EXPOSURE:\n\n  Direct production cost per hour (both plants): $480,000\n  **Daily exposure at stoppage:** $11,520,000\n  **Weekly exposure if unresolved:** $80,640,000\n\n## WORKFORCE IMPACT:\n\n  Workers at risk of temporary layoff:           4,200\n  **Affected downstream operations:** 3 Tier-2 assembly partners\n\n## CUSTOMER COMMITMENTS AT RISK:\n\n  OEM delivery schedule (Model Year 2025):       On notice of delay\n  Contractual penalty exposure (per day):        $750,000 (escalating)\n\n## SCENARIOS:\n\n  Best case (supplier resumes in 24h):   Recoverable with weekend overtime\n  Likely case (72h stoppage):            $34M exposure, customer escalation\n  Worst case (>7 days):                 Force majeure declaration, contract review\n\n> **ACTION REQUIRED:** Immediate executive intervention. Root cause identification and supplier recovery plan needed within 12 hours."
+        }
+      ]
+    },
+    "finance_analyst": {
+      "name": "Finance Analyst",
+      "title": "Senior Analyst, Supplier Financial Risk",
+      "description": "You have access to supplier payment data, accounts receivable aging, credit risk reports, commodity pricing signals, and internal financial policy documents. You can see the financial health picture \u2014 but not the operational reality.",
+      "briefing": "Your supplier risk dashboard flagged Apex Precision Parts 7 weeks ago. You have credit monitoring alerts and aging invoices that tell a story. Connect the dots and share your findings with the Supply Chain team in the War Room.",
+      "files": [
+        {
+          "id": "apex_ar_aging_report",
+          "name": "APP_AR_Aging_Report_Nov2024.csv",
+          "type": "csv",
+          "folder": "accounts_receivable",
+          "modified": "2024-11-13",
+          "is_clue": true,
+          "clue_id": "clue_invoices_aging",
+          "clue_weight": "primary",
+          "gate_question": {
+            "question": "APP paid in 28 days under Net-30 terms. Under Net-60 terms, they now average 87 days. What does this specific behavioral shift reveal?",
+            "options": [
+              "A) APP is intentionally stretching payments \u2014 a classic indicator of acute cash and liquidity stress",
+              "B) APP switched banks and their new payment processing system is slower",
+              "C) Our billing team is issuing invoices 27 days late on average",
+              "D) APP is disputing invoice accuracy after the quality event in Q2"
+            ],
+            "correct": "A",
+            "hint": "A supplier that consistently paid early under Net-30 doesn't suddenly pay 27 days late under Net-60 without a cause. Deliberate payment stretching is one of the first behavioral signals of a company managing a cash crisis."
+          },
+          "content": "ACCOUNTS RECEIVABLE AGING REPORT \u2014 APEX PRECISION PARTS\nGenerated: November 13, 2024 | Reporting Currency: USD\n\nInvoice_Number,Invoice_Date,Due_Date_Net30,Due_Date_Net60,Amount,Days_Past_Due_Net60,Status\nINV-2024-0892,2024-05-15,2024-06-14,2024-07-14,$412,800,122,OUTSTANDING\nINV-2024-0934,2024-06-01,2024-07-01,2024-07-31,$387,600,105,OUTSTANDING\nINV-2024-0971,2024-06-17,2024-07-17,2024-08-16,$421,200,89,OUTSTANDING\nINV-2024-1018,2024-07-08,2024-08-07,2024-09-06,$398,400,68,OUTSTANDING\nINV-2024-1055,2024-07-22,2024-08-21,2024-09-20,$412,800,54,OUTSTANDING\nINV-2024-1092,2024-08-05,2024-09-04,2024-10-04,$374,400,40,OUTSTANDING\n\nTOTAL OUTSTANDING: $2,407,200\n\nHISTORICAL PAYMENT BEHAVIOR (for reference):\n  Prior to May 2024 (Net-30 terms): Average days to pay = 28 days\n  Since May 2024 (Net-60 terms):    Average days to pay = 87 days (LATE even on Net-60)\n\nNOTES:\n  - Payment terms changed to Net-60 effective May 1, 2024\n  - APP's payment behavior degraded immediately after terms extension\n  - Under old Net-30 terms, APP consistently paid within 28 days (good payer)\n  - Under new Net-60 terms, APP is paying 27 days late on average \u2014 and the oldest 6 invoices remain UNPAID\n  - Total aged beyond Net-60: $2,407,200 across 6 invoices\n  - This pattern is consistent with a supplier experiencing acute liquidity stress"
+        },
+        {
+          "id": "supplier_credit_risk_report",
+          "name": "APP_Credit_Risk_Assessment_Q3.txt",
+          "type": "txt",
+          "folder": "risk",
+          "modified": "2024-10-28",
+          "is_clue": true,
+          "clue_id": "clue_credit_downgraded",
+          "clue_weight": "supporting",
+          "gate_question": {
+            "question": "APP's EBITDA/Interest Coverage ratio fell from 3.8x to 2.3x in one quarter. The report marks this as critical. Why is 2.3x specifically dangerous?",
+            "options": [
+              "A) 2.3x is below the 3.0x internal threshold our risk policy requires for Tier-1 suppliers",
+              "B) 2.3x is below the 2.5x minimum covenant in APP's credit agreement \u2014 breaching it gives their bank specific contractual rights",
+              "C) 2.3x interest coverage means APP's annual interest payments now exceed their quarterly revenue",
+              "D) 2.3x is the threshold at which credit rating agencies automatically downgrade to junk status"
+            ],
+            "correct": "B",
+            "hint": "The Key Indicators table flags 'BELOW 2.5x COVENANT' next to the interest coverage row. A covenant is a condition in APP's loan agreement \u2014 if violated, it triggers specific lender rights."
+          },
+          "content": "# SUPPLIER CREDIT RISK ASSESSMENT\n**Supplier:** Apex Precision Parts LLC\n**Prepared by:** Finance \u2014 Supplier Risk Analytics\n**Assessment Date:** October 28, 2024\n**Prior Assessment:** February 2024\n\n\n## RISK RATING CHANGE\n\n\n  **Prior Rating:** LOW RISK (BBB-)\n  **Current Rating:** ELEVATED RISK (BB+) \u26a0\n  **Change Trigger:** Quarterly financial filing review + external credit bureau signals\n  **Credit Watch:** Active since September 15, 2024\n\n\n## KEY INDICATORS\n\n\n  Indicator                    | Prior (Q1) | Current (Q3) | Change\n  -----------------------------|------------|--------------|-------\n  EBITDA / Interest Coverage   |   3.8x     |   2.3x       | \u25bc BELOW 2.5x COVENANT\n  Current Ratio                |   1.42     |   0.91       | \u25bc Below 1.0 (liquidity concern)\n  Days Sales Outstanding (DSO) |   31 days  |   89 days    | \u25b2 Receivables degrading\n  Debt / EBITDA                |   2.1x     |   3.4x       | \u25b2 Leverage increasing\n  Gross Margin                 |   18.4%    |   14.1%      | \u25bc Cost pressure evident\n\n\n## CONTRIBUTING FACTORS (ANALYST NOTES)\n\n\n  1. Raw material cost pressure: Steel prices increased ~23% in Q4. APP's annual\n     steel purchase volume (~$8M) implies ~$1.84M in unbudgeted COGS.\n\n  2. Working capital compression: Customer payment term extension (Net-30 \u2192 Net-60)\n     implemented May 2024 increased APP's receivables cycle by ~30 days.\n     Estimated working capital impact: -$1.2M to -$1.8M.\n\n  3. Combined effect: EBITDA/Interest coverage fell from 3.8x to 2.3x in one quarter,\n     breaching the 2.5x minimum covenant in APP's credit agreement.\n\n\n## RECOMMENDATION\n\n\n  ESCALATE to Procurement VP and CFO. Request voluntary disclosure from APP.\n  Suspend any additional payment terms changes for APP.\n  Consider proactive payment acceleration to stabilize APP's working capital.\n\n> **NOTE:** This assessment was distributed to Finance leadership on October 28.\n  No action has been taken as of the current report date."
+        },
+        {
+          "id": "apex_financial_health_tracker",
+          "name": "APP_Financial_Health_Dashboard.txt",
+          "type": "txt",
+          "folder": "risk",
+          "modified": "2024-11-01",
+          "is_clue": true,
+          "clue_id": "clue_financial_distress",
+          "clue_weight": "supporting",
+          "gate_question": {
+            "question": "APP's Q3 cash position is $0.3M \u2014 nearly depleted. The tracker shows their revolving credit facility at 98.5% utilization. What was APP's ONLY practical mechanism to purchase steel for production?",
+            "options": [
+              "A) Cash on hand ($0.3M) \u2014 sufficient for 2-3 weeks of normal steel purchases",
+              "B) Supplier credit from steel distributors who extend net-90 terms to established manufacturers",
+              "C) The revolving credit facility \u2014 the only remaining liquidity source, already 98.5% drawn",
+              "D) Accelerating our outstanding invoices by requesting early payment voluntarily"
+            ],
+            "correct": "C",
+            "hint": "The CRITICAL NOTE at the bottom of this tracker is explicit: 'Their only path to purchasing raw materials (steel) was the revolving credit facility.' With $0.3M cash and $10M revolver at 98.5% \u2014 what happens if that facility gets frozen?"
+          },
+          "content": "# STRATEGIC SUPPLIER FINANCIAL HEALTH TRACKER\nSupplier: Apex Precision Parts LLC | Tier: 1 | Category: Brake Components\n**Last Updated:** November 1, 2024\n\n**ANNUAL REVENUE (estimated):** $42M\n**OUR SPEND (annual):** $18.6M (44% of APP revenue \u2014 HIGH DEPENDENCY)\n**PAYMENT TERMS (current):** Net-60\n**RELATIONSHIP TENURE:** 9 years\n\n## QUARTERLY FINANCIAL TREND:\n\n\n  Metric                Q1 2024   Q2 2024   Q3 2024   Trend\n  -------------------   -------   -------   -------   -----\n  Revenue ($M)           $10.2     $10.8     $9.7      \u25bc\n  Gross Margin %         18.4%     16.2%     14.1%     \u25bc\u25bc\n  EBITDA ($M)            $1.82     $1.44     $0.96     \u25bc\u25bc\u25bc\n  Interest Coverage      3.8x      3.1x      2.3x      \u25bc\u25bc\u25bc \u26a0 COVENANT = 2.5x\n  Current Ratio          1.42      1.18      0.91      \u25bc\u25bc\n  Cash & Equivalents     $2.1M     $1.4M     $0.3M     \u25bc\u25bc\u25bc\n\n## OBSERVATIONS:\n\n  - Cash position nearly depleted ($0.3M as of Q3)\n  - At current cash burn rate, APP reached effective zero cash ~mid-October\n  - Interest coverage below covenant threshold = bank notification trigger\n  - We are 44% of their revenue \u2014 our payment timing directly impacts their liquidity\n\n## CRITICAL NOTE:\n\n  With $0.3M cash, $10M revolving credit facility at 98.5% utilization (per credit\n  bureau data), and Net-60 terms delaying $2.4M+ of receivables \u2014 APP has been\n  functionally insolvent since approximately mid-October.\n\n  Their only path to purchasing raw materials (steel) was the revolving credit\n  facility. If that facility is frozen or recalled, production stops immediately."
+        },
+        {
+          "id": "first_industrial_bank_credit_alert",
+          "name": "CreditWatch_Alert_APP_Priority_HIGH.txt",
+          "type": "txt",
+          "folder": "risk",
+          "modified": "2024-10-27",
+          "is_clue": true,
+          "clue_id": "clue_credit_facility_called",
+          "clue_weight": "primary",
+          "gate_question": {
+            "question": "FIB placed a hold on APP's revolving credit facility on October 27. APP's first delivery miss was October 28. What is the direct causal link?",
+            "options": [
+              "A) FIB's hold triggered a public credit downgrade, and APP stopped production to avoid customer scrutiny during the review",
+              "B) The hold blocked APP from drawing on the facility to purchase steel \u2192 no raw materials \u2192 production stopped immediately the next day",
+              "C) The hold triggered a cross-default on all APP debt, forcing them into a bankruptcy filing that halted operations",
+              "D) The hold was a routine administrative measure and the timing with the delivery stoppage is coincidental"
+            ],
+            "correct": "B",
+            "hint": "The alert states: 'APP CANNOT draw additional funds from the facility... including raw material purchases.' If the only way to buy steel is the credit facility, and that facility is frozen \u2014 what happens to production the very next day?"
+          },
+          "content": "\n---\n\n## CREDITWATCH PRO \u2014 PRIORITY ALERT\n\n  Supplier Credit Monitoring Service\n\n---\n\nTO:     supplier.risk@[your-company].com\n**DATE:** October 27, 2024\n**SUBJECT:** CREDIT FACILITY STATUS CHANGE \u2014 Apex Precision Parts LLC\n\n**ALERT TYPE:** Credit Facility \u2014 Status Change\n**SUPPLIER:** Apex Precision Parts LLC\n\n## DUNS:         07-419-2851\n\n## PRIORITY:     HIGH\n\n\n\n## ALERT DETAILS\n\n\n## 1. CREDIT FACILITY HOLD:\n\n   First Industrial Bank (FIB) has placed an administrative hold on\n   Apex Precision Parts' revolving credit facility pending covenant review.\n\n   **Facility Reference:** RCF-2019-0847\n   **Facility Type:** Revolving Credit Facility\n   **Facility Limit:** $10,000,000\n   **Current Utilization:** $9,847,000 (98.5% \u2014 FULLY DRAWN)\n   **Status:** HOLD \u2014 Covenant Review in Progress\n\n## 2. COVENANT TRIGGER:\n\n   Q3 financial reporting indicates a potential violation of the financial\n   maintenance covenant. EBITDA/Interest Coverage appears to have fallen\n   below the minimum 2.5x threshold stipulated in APP's credit agreement.\n\n## 3. OPERATIONAL IMPACT:\n\n   While the hold is in place, APP CANNOT draw additional funds from the\n   facility and restrictions may apply to using existing balances for\n   operational expenditures including raw material purchases.\n\n4. PRIOR ALERTS (for reference):\n   - Sept 15, 2024: Credit Watch initiated (rating downgrade BBB- \u2192 BB+)\n   - Oct 1, 2024:   Facility utilization flag (>90% draw-down)\n\n\n## RISK ASSESSMENT\n\n  **Prior Risk Level:** LOW\n  **Current Risk Level:** HIGH \u26a0\n\nThis alert was generated because you subscribe to credit monitoring for\nthis supplier. Recommended action: Contact your account representative\nand request direct engagement with APP's finance leadership within 48h.\n\n\n---\n\nThis alert was received October 27. Today is November 14. No action was\ntaken in the 18 days since receipt. The supply stoppage began October 28.\n\n---\n"
+        },
+        {
+          "id": "steel_commodity_price_alert",
+          "name": "Steel_Commodity_Price_Analysis_Q4.txt",
+          "type": "txt",
+          "folder": "market_data",
+          "modified": "2024-11-08",
+          "is_clue": true,
+          "clue_id": "clue_steel_price_spike",
+          "clue_weight": "supporting",
+          "gate_question": {
+            "question": "Steel prices rose 23% in Q4, adding ~$370K in unbudgeted quarterly costs for APP. APP's Q3 EBITDA was $0.96M. The report flags this as 'could be significant.' Why is this specific combination dangerous for APP's bank covenant?",
+            "options": [
+              "A) The $370K cost increase directly reduces APP's cash balance below the minimum required by their covenant",
+              "B) The $370K quarterly hit represents ~38% of quarterly EBITDA \u2014 when combined with the working capital drain from Net-60 terms, it could push interest coverage well below the 2.5x covenant threshold",
+              "C) The steel tariff also applies to the brake assembly components APP procures from sub-suppliers, multiplying the impact",
+              "D) The cost increase is manageable \u2014 APP can absorb it through efficiency gains without any covenant impact"
+            ],
+            "correct": "B",
+            "hint": "The report explicitly says: 'Cross-reference with APP credit monitoring data.' APP's interest coverage was already at 2.3x \u2014 below the 2.5x covenant. Now add another $370K quarterly EBITDA compression. What direction does the ratio move?"
+          },
+          "content": "# COMMODITY PRICE ANALYSIS \u2014 STEEL (Q4 2024)\n**Prepared by:** Finance \u2014 Market Intelligence\n**Date:** November 8, 2024\n\n## HOT ROLLED COIL STEEL \u2014 PRICE TREND\n\n\n  Period           Price/ton   QoQ Change\n  ----------       ---------   ----------\n  Q1 2024          $842        \u2014\n  Q2 2024          $871        +3.4%\n  Q3 2024          $889        +2.1%\n  Q4 2024 (Oct)    $1,094      +23.1% \u26a0\n\n## DRIVERS OF Q4 SPIKE:\n\n  - US Section 232 tariff increase (effective October 1)\n  - Reduced domestic production (two major mills on maintenance shutdown)\n  - Inventory drawdown by distributors ahead of anticipated price increases\n\n## IMPACT ON APEX PRECISION PARTS (ESTIMATED):\n\n  **APP annual steel consumption:** ~7,200 tons\n  **Prior quarterly steel budget:** ~$1.6M (Q3 baseline)\n  Q4 steel cost at new prices:      ~$1.97M\n  Incremental unbudgeted cost (Q4): ~$370,000 per quarter\n  **Annualized impact if sustained:** ~$1.48M per year\n\n> **NOTE:** For a supplier with Q3 EBITDA of $0.96M (annualized ~$3.84M), a\n$370K quarterly cost increase represents ~38% of quarterly EBITDA.\nThis compound pressure on an already-stressed covenant ratio could be\nsignificant. Cross-reference with APP credit monitoring data."
+        },
+        {
+          "id": "payment_terms_policy_memo",
+          "name": "CFO_Memo_Payment_Terms_WCOP.txt",
+          "type": "txt",
+          "folder": "policies",
+          "modified": "2024-04-10",
+          "is_clue": true,
+          "clue_id": "clue_payment_terms_changed",
+          "clue_weight": "connector",
+          "gate_question": {
+            "question": "Treasury's risk flag in the CFO memo was exactly right. Which supplier profile did Treasury specifically identify as most vulnerable to the Net-60 terms change?",
+            "options": [
+              "A) International suppliers with FX exposure who carry USD-denominated debt",
+              "B) Large Tier-1 suppliers with complex multi-year contracts",
+              "C) Smaller suppliers with leveraged balance sheets or thin margins",
+              "D) Suppliers rated below 'preferred' tier in our supplier performance system"
+            ],
+            "correct": "C",
+            "hint": "Read the RISK CONSIDERATIONS section carefully. Treasury used very specific language about which supplier types would be hurt most. Does APP \u2014 with 14.1% gross margin, 3.4x debt/EBITDA, and 44% revenue dependency on us \u2014 fit that profile?"
+          },
+          "content": "# CONFIDENTIAL \u2014 FINANCE LEADERSHIP\n\n## MEMORANDUM\n\nTO:     Finance Leadership Team / VP Procurement\n**FROM:** Office of the CFO\n**DATE:** April 10, 2024\nRE:     Working Capital Optimization Program \u2014 Payment Terms Extension\n\n**EFFECTIVE DATE:** May 1, 2024\n\nAs part of our Q2-Q4 working capital improvement initiative, we are extending\npayment terms from Net-30 to Net-60 for our Tier-1 and Tier-2 supplier base.\n\n## FINANCIAL RATIONALE:\n\n  Current DPO (Days Payable Outstanding):  32 days\n  **Target DPO post-implementation:** 60 days\n  Estimated working capital improvement:   $17.8M\n  Annual interest savings (at 5.0% rate):  $890,000\n\nRISK CONSIDERATIONS (flagged by Treasury):\n  - Smaller suppliers may face working capital pressure from the extended cycle\n  - Suppliers with leveraged balance sheets or thin margins are most at risk\n  - Recommend: Maintain credit monitoring for all Tier-1 suppliers\n  - Recommend: Establish a supplier financial assistance process for distressed cases\n\n## IMPLEMENTATION:\n\n  - 847 suppliers notified via formal letter (week of April 15)\n  - Tier-1 auto components (including Apex Precision Parts): effective May 1\n  - Exception process: Suppliers may request Net-30 retention with CFO approval\n    (Note: Apex Precision Parts did NOT request an exception)\n\nThis memo is confidential. Please do not forward externally.\n\n--- ANALYST NOTE APPENDED (Oct 28, 2024) ---\nIn retrospect, Treasury's risk flag about leveraged suppliers was prescient.\nApex Precision Parts (44% revenue dependency on us, 98.5% revolving credit\nutilization) was exactly the profile flagged. The combination of our terms\nextension, steel price increases, and resulting covenant breach has created\nthe current crisis. Escalation to CFO recommended immediately."
+        },
+        {
+          "id": "forex_variance_report",
+          "name": "FX_Variance_MXN_Suppliers_Q3.txt",
+          "type": "txt",
+          "folder": "market_data",
+          "modified": "2024-10-15",
+          "is_clue": false,
+          "clue_id": null,
+          "clue_weight": null,
+          "content": "# FOREIGN EXCHANGE VARIANCE REPORT \u2014 Q3 2024\n**Scope:** Mexico-based supplier base (MXN/USD exposure)\n**Prepared by:** Finance \u2014 Treasury Operations\n\n## SUMMARY:\n\nMXN/USD exchange rate moved from 17.2 to 19.8 (MXN depreciation of 15%) in Q3.\nThis created cost variances for 12 suppliers in our Mexico supply base.\n\n## IMPACTED SUPPLIERS:\n\n  - Monterrey Stampings SA: +$180K unfavorable FX variance\n  - Juarez Precision Castings: +$95K unfavorable\n  - TechMold Guadalajara: +$62K unfavorable\n\nTOTAL FX EXPOSURE (Q3): $337,000 unfavorable\n\n## MITIGATION:\n\n  - Natural hedge agreements in place for 6 of 12 affected suppliers\n  - Renegotiation of USD-denominated contracts underway for remaining 6\n\n> **NOTE:** Apex Precision Parts is a US domestic supplier (Lansing, MI).\nThis report does NOT pertain to APP. No FX exposure for APP exists.\nThis report is filed here for completeness of supplier risk documentation."
+        },
+        {
+          "id": "duplicate_invoice_audit",
+          "name": "AP_Duplicate_Invoice_Investigation.txt",
+          "type": "txt",
+          "folder": "accounts_receivable",
+          "modified": "2024-10-22",
+          "is_clue": false,
+          "clue_id": null,
+          "clue_weight": null,
+          "content": "# ACCOUNTS PAYABLE \u2014 DUPLICATE INVOICE INVESTIGATION\n**Ref:** AP-AUDIT-2024-041\n**Date:** October 22, 2024\n\n**SUPPLIER UNDER REVIEW:** Delta Industrial Fasteners (NOT Apex Precision Parts)\n\n## SUMMARY:\n\nAn internal audit identified 3 duplicate invoices submitted by Delta Industrial\nFasteners between August and October 2024, totaling $47,200.\n\n## INVOICES:\n\n  INV-DIF-8821 & INV-DIF-8821A: $18,400 (duplicate detected, one payment reversed)\n  INV-DIF-9004 & INV-DIF-9004R:  $16,200 (duplicate detected, one payment reversed)\n  INV-DIF-9187 & INV-DIF-9187-B: $12,600 (under review)\n\n## ACTION:\n\n  - Delta Industrial Fasteners notified\n  - AP controls review in progress\n  - Third duplicate under recovery negotiation\n\n> **NOTE:** This investigation is unrelated to the Apex Precision Parts situation.\nFiled here as part of standard AP audit documentation."
+        }
+      ]
+    }
+  },
+  "escape_conditions": {
+    "correct_root_cause": "Apex Precision Parts experienced a cascading financial failure. Our payment terms extension from Net-30 to Net-60 (effective May 2024) \u2014 combined with a 23% steel price increase in Q4 \u2014 compressed APP's EBITDA below their 2.5x interest coverage covenant with First Industrial Bank. The bank placed a hold on their $10M revolving credit facility (drawn 98.5%), leaving APP unable to purchase raw materials. Production stopped immediately.",
+    "correct_action": "Emergency payment acceleration: release all 6 outstanding invoices ($2.4M+) immediately via expedited ACH. Temporarily revert APP's payment terms to Net-30. Escalate to CPO and CFO for potential emergency credit facility backstop or bridge arrangement with First Industrial Bank. Establish direct executive contact with APP and FIB within 24 hours.",
+    "key_elements": [
+      "payment_terms_extension_identified",
+      "steel_cost_increase_identified",
+      "covenant_violation_identified",
+      "credit_facility_hold_identified",
+      "payment_acceleration_recommended",
+      "executive_escalation_recommended"
+    ]
+  },
+  "hint_triggers": [
+    {
+      "id": "hint_t10_finance_no_credit_alert",
+      "type": "time_elapsed",
+      "seconds": 600,
+      "coach_context": "10 minutes have elapsed. The Finance Analyst may not have found the CreditWatch alert yet \u2014 that file is the most direct evidence of the bank's action. Also check if the Supply Chain Manager has connected the payment terms notification to the timeline."
+    },
+    {
+      "id": "hint_t20_connector_clue",
+      "type": "time_elapsed",
+      "seconds": 1200,
+      "coach_context": "20 minutes in. The key connector clue is the payment terms change \u2014 both personas have a version of this document (supplier notification and CFO memo). If players haven't shared these in the War Room, they're likely working in silos and haven't connected the financial trigger to the operational stoppage."
+    },
+    {
+      "id": "hint_after_shipments_found",
+      "type": "clue_discovered",
+      "clue_id": "clue_shipments_stopped",
+      "coach_context": "Supply chain has confirmed the shipments stopped. The key question now is WHY. The answer is financial \u2014 direct the supply chain player to share their payment terms notification and have finance correlate it to the aging report and credit alert."
+    },
+    {
+      "id": "hint_after_credit_facility",
+      "type": "clue_discovered",
+      "clue_id": "clue_credit_facility_called",
+      "coach_context": "Finance has found the smoking gun \u2014 the credit facility hold. Now the challenge is connecting it to a recommended action. The team needs to recognize that restoring APP's liquidity (payment acceleration + terms reversion) is the only short-term fix, since no alternate suppliers exist."
+    },
+    {
+      "id": "hint_inactivity_5min",
+      "type": "no_activity",
+      "seconds": 300,
+      "coach_context": "A player has been inactive for 5 minutes. They may be stuck or have missed a key document. Prompt them to check unread files or share findings in the War Room."
+    }
+  ]
+}

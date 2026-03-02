@@ -1,0 +1,39 @@
+# ── Secrets ──────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── macOS ─────────────────────────────────────────────────────
+.DS_Store
+**/.DS_Store
+
+# ── Node / Next.js ────────────────────────────────────────────
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+
+# ── Python / Backend ──────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
+dist/
+*.egg
+
+# ── Claude session data ───────────────────────────────────────
+.claude/
+
+# ── Logs ──────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Editor ────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
