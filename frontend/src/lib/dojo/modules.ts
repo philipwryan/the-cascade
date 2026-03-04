@@ -4,30 +4,37 @@ export const MODULES: ModuleDef[] = [
   // ── White Belt ──────────────────────────────────────────────────────────────
   {
     id: 'module-1',
-    titleEn: 'Eyes of Ohno',
-    titleJa: '大野の目',
-    subtitleEn: 'Learn to see waste through a master\'s eyes',
-    subtitleJa: '巨匠の目で無駄を見抜く',
+    titleEn: 'Eyes of Ohno (Apex Case Study)',
+    titleJa: '大野の目 (Apex事例研究)',
+    subtitleEn: 'Learn to spot the waste that killed Apex Automotive',
+    subtitleJa: 'Apex Automotiveを破滅させた無駄を見抜く',
     icon: '👁',
     belt: 'white',
     xpReward: 50,
     steps: [
       {
         id: 'step-1',
+        titleEn: 'The Gemba Walk',
+        titleJa: '現場歩行',
+        type: 'reflection',
+        durationMin: 5,
+      },
+      {
+        id: 'step-2',
         titleEn: 'The Chalk Circle',
         titleJa: 'チョークの輪',
         type: 'observation',
         durationMin: 5,
       },
       {
-        id: 'step-2',
+        id: 'step-3',
         titleEn: 'Waste Spotter',
         titleJa: '無駄発見者',
         type: 'simulation',
         durationMin: 8,
       },
       {
-        id: 'step-3',
+        id: 'step-4',
         titleEn: '5-Why Drill',
         titleJa: '5なぜドリル',
         type: 'drill',
@@ -39,8 +46,8 @@ export const MODULES: ModuleDef[] = [
     id: 'module-2',
     titleEn: 'The TPS House',
     titleJa: 'TPSの家',
-    subtitleEn: 'Build Toyota\'s production system from the foundation up',
-    subtitleJa: '基礎からトヨタ生産方式を構築する',
+    subtitleEn: 'Understand the architectural foundation that Apex failed to build',
+    subtitleJa: 'Apexが構築に失敗したアーキテクチャの基盤を理解する',
     icon: '🏛',
     belt: 'white',
     xpReward: 60,
@@ -72,15 +79,15 @@ export const MODULES: ModuleDef[] = [
     id: 'module-3',
     titleEn: 'TWI Foundations',
     titleJa: 'TWI基礎',
-    subtitleEn: 'Job Instruction · Job Methods · Job Relations',
-    subtitleJa: '仕事の教え方・改善の仕方・人の扱い方',
+    subtitleEn: 'Analyze the breakdown of TWI pillars that accelerated the collapse',
+    subtitleJa: '崩壊を加速させたTWIの柱の欠如を分析する',
     icon: '📋',
     belt: 'white',
     xpReward: 70,
     steps: [
       { id: 'step-1', titleEn: 'Job Instruction (JI)', titleJa: '仕事の教え方', type: 'simulation', durationMin: 8 },
-      { id: 'step-2', titleEn: 'Job Methods (JM)',     titleJa: '改善の仕方',   type: 'drill',      durationMin: 7 },
-      { id: 'step-3', titleEn: 'Job Relations (JR)',   titleJa: '人の扱い方',   type: 'reflection', durationMin: 6 },
+      { id: 'step-2', titleEn: 'Job Methods (JM)', titleJa: '改善の仕方', type: 'drill', durationMin: 7 },
+      { id: 'step-3', titleEn: 'Job Relations (JR)', titleJa: '人の扱い方', type: 'reflection', durationMin: 6 },
     ],
   },
   // ── Green Belt ──────────────────────────────────────────────────────────────
@@ -94,9 +101,9 @@ export const MODULES: ModuleDef[] = [
     belt: 'green',
     xpReward: 80,
     steps: [
-      { id: 'step-1', titleEn: 'Batch vs. Flow',  titleJa: 'バッチvsフロー', type: 'simulation', durationMin: 10 },
-      { id: 'step-2', titleEn: 'Pull Systems',    titleJa: 'プルシステム',   type: 'builder',    durationMin: 8  },
-      { id: 'step-3', titleEn: 'Kanban Signals',  titleJa: 'カンバン信号',   type: 'quiz',       durationMin: 6  },
+      { id: 'step-1', titleEn: 'Batch vs. Flow', titleJa: 'バッチvsフロー', type: 'simulation', durationMin: 10 },
+      { id: 'step-2', titleEn: 'Pull Systems', titleJa: 'プルシステム', type: 'builder', durationMin: 8 },
+      { id: 'step-3', titleEn: 'Kanban Signals', titleJa: 'カンバン信号', type: 'quiz', durationMin: 6 },
     ],
   },
   {
@@ -109,9 +116,9 @@ export const MODULES: ModuleDef[] = [
     belt: 'green',
     xpReward: 85,
     steps: [
-      { id: 'step-1', titleEn: 'Takt Time Calculator', titleJa: 'タクトタイム計算',   type: 'drill',      durationMin: 7 },
-      { id: 'step-2', titleEn: 'Heijunka Box',          titleJa: '平準化ボックス',     type: 'builder',    durationMin: 9 },
-      { id: 'step-3', titleEn: 'Leveling the Cascade',  titleJa: 'カスケードを平準化', type: 'simulation', durationMin: 8 },
+      { id: 'step-1', titleEn: 'Takt Time Calculator', titleJa: 'タクトタイム計算', type: 'drill', durationMin: 7 },
+      { id: 'step-2', titleEn: 'Heijunka Box', titleJa: '平準化ボックス', type: 'builder', durationMin: 9 },
+      { id: 'step-3', titleEn: 'Leveling the Cascade', titleJa: 'カスケードを平準化', type: 'simulation', durationMin: 8 },
     ],
   },
   {
@@ -125,8 +132,8 @@ export const MODULES: ModuleDef[] = [
     xpReward: 90,
     steps: [
       { id: 'step-1', titleEn: 'The Andon Pull Decision', titleJa: 'アンドン引き決断', type: 'simulation', durationMin: 8 },
-      { id: 'step-2', titleEn: 'Abnormality Detection',   titleJa: '異常検知',         type: 'drill',      durationMin: 7 },
-      { id: 'step-3', titleEn: 'Poka-Yoke Design',        titleJa: 'ポカヨケ設計',     type: 'builder',    durationMin: 8 },
+      { id: 'step-2', titleEn: 'Abnormality Detection', titleJa: '異常検知', type: 'drill', durationMin: 7 },
+      { id: 'step-3', titleEn: 'Poka-Yoke Design', titleJa: 'ポカヨケ設計', type: 'builder', durationMin: 8 },
     ],
   },
   {
@@ -139,9 +146,9 @@ export const MODULES: ModuleDef[] = [
     belt: 'green',
     xpReward: 80,
     steps: [
-      { id: 'step-1', titleEn: 'Why Standards First?',    titleJa: 'なぜ標準から始めるのか？', type: 'reflection', durationMin: 5  },
-      { id: 'step-2', titleEn: 'Writing Work Standards',  titleJa: '標準作業書の作成',         type: 'builder',    durationMin: 10 },
-      { id: 'step-3', titleEn: 'Standards → Kaizen',      titleJa: '標準→改善',                type: 'simulation', durationMin: 8  },
+      { id: 'step-1', titleEn: 'Why Standards First?', titleJa: 'なぜ標準から始めるのか？', type: 'reflection', durationMin: 5 },
+      { id: 'step-2', titleEn: 'Writing Work Standards', titleJa: '標準作業書の作成', type: 'builder', durationMin: 10 },
+      { id: 'step-3', titleEn: 'Standards → Kaizen', titleJa: '標準→改善', type: 'simulation', durationMin: 8 },
     ],
   },
   // ── Blue Belt ───────────────────────────────────────────────────────────────
@@ -155,9 +162,9 @@ export const MODULES: ModuleDef[] = [
     belt: 'blue',
     xpReward: 120,
     steps: [
-      { id: 'step-1', titleEn: 'Current State',         titleJa: '現状図',       type: 'builder', durationMin: 12 },
-      { id: 'step-2', titleEn: 'Waste Identification',  titleJa: '無駄の特定',   type: 'drill',   durationMin: 8  },
-      { id: 'step-3', titleEn: 'Future State Design',   titleJa: '将来図設計',   type: 'builder', durationMin: 12 },
+      { id: 'step-1', titleEn: 'Current State', titleJa: '現状図', type: 'builder', durationMin: 12 },
+      { id: 'step-2', titleEn: 'Waste Identification', titleJa: '無駄の特定', type: 'drill', durationMin: 8 },
+      { id: 'step-3', titleEn: 'Future State Design', titleJa: '将来図設計', type: 'builder', durationMin: 12 },
     ],
   },
   {
@@ -170,9 +177,9 @@ export const MODULES: ModuleDef[] = [
     belt: 'blue',
     xpReward: 130,
     steps: [
-      { id: 'step-1', titleEn: 'The 4-Step Pattern',     titleJa: '4段階パターン',     type: 'simulation', durationMin: 10 },
-      { id: 'step-2', titleEn: '5 Coaching Questions',   titleJa: '5つのコーチング質問', type: 'drill',      durationMin: 10 },
-      { id: 'step-3', titleEn: 'Run an Experiment',      titleJa: '実験を回す',         type: 'builder',    durationMin: 12 },
+      { id: 'step-1', titleEn: 'The 4-Step Pattern', titleJa: '4段階パターン', type: 'simulation', durationMin: 10 },
+      { id: 'step-2', titleEn: '5 Coaching Questions', titleJa: '5つのコーチング質問', type: 'drill', durationMin: 10 },
+      { id: 'step-3', titleEn: 'Run an Experiment', titleJa: '実験を回す', type: 'builder', durationMin: 12 },
     ],
   },
   {
@@ -185,9 +192,9 @@ export const MODULES: ModuleDef[] = [
     belt: 'blue',
     xpReward: 140,
     steps: [
-      { id: 'step-1', titleEn: 'Left Side: Understand', titleJa: '左側：理解',   type: 'builder',    durationMin: 10 },
-      { id: 'step-2', titleEn: 'Right Side: Solve',     titleJa: '右側：解決',   type: 'builder',    durationMin: 10 },
-      { id: 'step-3', titleEn: 'Coaching Dialogue',     titleJa: 'コーチング対話', type: 'simulation', durationMin: 8  },
+      { id: 'step-1', titleEn: 'Left Side: Understand', titleJa: '左側：理解', type: 'builder', durationMin: 10 },
+      { id: 'step-2', titleEn: 'Right Side: Solve', titleJa: '右側：解決', type: 'builder', durationMin: 10 },
+      { id: 'step-3', titleEn: 'Coaching Dialogue', titleJa: 'コーチング対話', type: 'simulation', durationMin: 8 },
     ],
   },
   {
@@ -201,8 +208,8 @@ export const MODULES: ModuleDef[] = [
     xpReward: 100,
     steps: [
       { id: 'step-1', titleEn: 'People-First Decisions', titleJa: '人材優先の意思決定', type: 'simulation', durationMin: 8 },
-      { id: 'step-2', titleEn: 'JR: The 4-Step Method',  titleJa: 'JR：4段階法',       type: 'drill',      durationMin: 8 },
-      { id: 'step-3', titleEn: 'Building Trust',          titleJa: '信頼関係構築',       type: 'reflection', durationMin: 6 },
+      { id: 'step-2', titleEn: 'JR: The 4-Step Method', titleJa: 'JR：4段階法', type: 'drill', durationMin: 8 },
+      { id: 'step-3', titleEn: 'Building Trust', titleJa: '信頼関係構築', type: 'reflection', durationMin: 6 },
     ],
   },
   // ── Black Belt ──────────────────────────────────────────────────────────────
@@ -216,9 +223,9 @@ export const MODULES: ModuleDef[] = [
     belt: 'black',
     xpReward: 180,
     steps: [
-      { id: 'step-1', titleEn: 'True North Vision', titleJa: 'トゥルーノース',    type: 'reflection', durationMin: 8  },
-      { id: 'step-2', titleEn: 'X-Matrix Builder',  titleJa: 'X-マトリクス構築', type: 'builder',    durationMin: 15 },
-      { id: 'step-3', titleEn: 'Catchball',          titleJa: 'キャッチボール',   type: 'simulation', durationMin: 10 },
+      { id: 'step-1', titleEn: 'True North Vision', titleJa: 'トゥルーノース', type: 'reflection', durationMin: 8 },
+      { id: 'step-2', titleEn: 'X-Matrix Builder', titleJa: 'X-マトリクス構築', type: 'builder', durationMin: 15 },
+      { id: 'step-3', titleEn: 'Catchball', titleJa: 'キャッチボール', type: 'simulation', durationMin: 10 },
     ],
   },
   {
@@ -231,9 +238,9 @@ export const MODULES: ModuleDef[] = [
     belt: 'black',
     xpReward: 250,
     steps: [
-      { id: 'step-1', titleEn: 'Crisis Diagnosis',    titleJa: '危機診断',             type: 'simulation', durationMin: 15 },
-      { id: 'step-2', titleEn: 'Countermeasure A3',   titleJa: '対策A3',               type: 'builder',    durationMin: 20 },
-      { id: 'step-3', titleEn: 'War Room Debrief',    titleJa: 'ウォールームデブリーフ', type: 'reflection', durationMin: 10 },
+      { id: 'step-1', titleEn: 'Crisis Diagnosis', titleJa: '危機診断', type: 'simulation', durationMin: 15 },
+      { id: 'step-2', titleEn: 'Countermeasure A3', titleJa: '対策A3', type: 'builder', durationMin: 20 },
+      { id: 'step-3', titleEn: 'War Room Debrief', titleJa: 'ウォールームデブリーフ', type: 'reflection', durationMin: 10 },
     ],
   },
   {
@@ -246,9 +253,9 @@ export const MODULES: ModuleDef[] = [
     belt: 'black',
     xpReward: 200,
     steps: [
-      { id: 'step-1', titleEn: 'Design a JI Breakdown', titleJa: 'JIブレークダウン設計', type: 'builder',    durationMin: 15 },
-      { id: 'step-2', titleEn: 'Teach-Back Practice',   titleJa: 'ティーチバック練習',   type: 'simulation', durationMin: 12 },
-      { id: 'step-3', titleEn: 'Capstone Reflection',   titleJa: 'キャップストーン振り返り', type: 'reflection', durationMin: 10 },
+      { id: 'step-1', titleEn: 'Design a JI Breakdown', titleJa: 'JIブレークダウン設計', type: 'builder', durationMin: 15 },
+      { id: 'step-2', titleEn: 'Teach-Back Practice', titleJa: 'ティーチバック練習', type: 'simulation', durationMin: 12 },
+      { id: 'step-3', titleEn: 'Capstone Reflection', titleJa: 'キャップストーン振り返り', type: 'reflection', durationMin: 10 },
     ],
   },
 ];

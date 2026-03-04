@@ -11,6 +11,9 @@ router = APIRouter()
 class InjectMessageBody(BaseModel):
     message: str
 
+class DiscoverClueBody(BaseModel):
+    clue_id: str
+
 
 @router.post("/sessions")
 async def create_session(request: Request):
@@ -73,6 +76,40 @@ async def get_scenario(request: Request):
         },
     }
 
+@router.post("/game/{session_id}/clues/discover")
+async def discover_clue(session_id: str, body: DiscoverClueBody, request: Request):
+    """Webhook endpoint from the Mobile QR Scanner to unlock a physical artifact clue."""
+    from api.websocket_handler import manager
+    
+    engine: GameEngine = request.app.state.engine
+    
+    try:
+        session, was_new = await engine.discover_clue_from_scan(session_id, body.clue_id)
+        
+        if not was_new:
+            raise HTTPException(status_code=400, detail="Artifact already discovered by this team.")
+            
+        # Broadcast the updated state so the clues drawer opens on the main UI immediately
+        await manager.broadcast(session_id, {
+            "type": "session_state",
+            "data": session.model_dump(mode="json"),
+        })
+        
+        # Optionally send a system message to the war room
+        session, msg = await engine.add_warroom_message(
+            session_id, "SYSTEM", 
+            f"🎯 PHYSICAL ARTIFACT SCANNED: New evidence [{body.clue_id}] has been secured from the Genba and added to your digital clues vault.", 
+            "system"
+        )
+        await manager.broadcast(session_id, {
+            "type": "warroom_message",
+            "data": msg.model_dump(mode="json"),
+        })
+        
+        return {"ok": True, "message": "Clue discovered successfully"}
+        
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
 
 # ── Admin / Moderator endpoints ──────────────────────────────────────────────
 

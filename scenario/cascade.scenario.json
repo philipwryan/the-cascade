@@ -95,9 +95,9 @@
           "type": "txt",
           "folder": "alerts",
           "modified": "2024-10-19",
-          "is_clue": false,
-          "clue_id": null,
-          "clue_weight": null,
+          "is_clue": true,
+          "clue_id": "clue_logistics_ruled_out",
+          "clue_weight": "supporting",
           "content": "# LOGISTICS DISRUPTION ALERT \u2014 REGION: MIDWEST\n**Issued by:** Supply Chain Risk Management\n**Date:** October 19, 2024\n**Status:** RESOLVED\n\n## SUMMARY:\n\nA significant weather system (Winter Storm Cleo) impacted freight movement across Michigan, Indiana, and Ohio from October 15\u201318, 2024.\n\n## IMPACT ON OPERATIONS:\n\n  - 3-day average delivery delay for Midwest suppliers\n  - Road freight carriers operating at 60% capacity Oct 15-17\n  - I-94 and I-75 corridors affected\n\n## RESOLUTION:\n\n  All disrupted shipments resolved by October 22, 2024.\n  **Apex Precision Parts:** October 23 delivery confirmed on time. No ongoing impact.\n\n> **ACTION REQUIRED:** None. Situation resolved.\n\n> **NOTE:** This alert is retained for reference. The weather event has NO bearing on current supply disruption which began October 28 \u2014 5 days after full resolution of this event."
         },
         {
@@ -106,9 +106,9 @@
           "type": "txt",
           "folder": "operations",
           "modified": "2024-11-10",
-          "is_clue": false,
-          "clue_id": null,
-          "clue_weight": null,
+          "is_clue": true,
+          "clue_id": "clue_no_alternate_supplier",
+          "clue_weight": "supporting",
           "content": "# ALTERNATE SUPPLIER ASSESSMENT\n**Part:** BRK-A-2201 (Precision Brake Assembly, Hydraulic, Type A)\n**Prepared by:** Global Sourcing Team\n**Date:** November 10, 2024\n\n**CURRENT SUPPLIER:** Apex Precision Parts (sole-source)\n\n## ASSESSMENT OF ALTERNATIVES:\n\n\n1. Bremwald Precision (Germany)\n   - Capability: Yes (similar product line)\n   - Lead time to qualify: 8\u201312 months\n   - Current capacity: Committed to EU OEM contracts through Q2 2025\n   - Verdict: NOT VIABLE (short-term)\n\n2. Highbridge Components (Ontario, Canada)\n   - Capability: Partial (Type B only, not Type A geometry)\n   - Engineering rework required: Significant (3\u20136 months minimum)\n   - Verdict: NOT VIABLE\n\n3. Flex-Source (Mexico City)\n   - Capability: Under evaluation\n   - IATF 16949 certification: Not yet achieved\n   - Verdict: NOT VIABLE\n\n## CONCLUSION:\n\nThere is NO qualified alternate supplier for BRK-A-2201 that can deliver within a timeframe that prevents production stoppage.\n\nThe only path to avoiding a line stoppage is restoring Apex Precision Parts to active production.\n\nThis is a sole-source exposure risk that should be flagged for the strategic sourcing review."
         },
         {
@@ -117,9 +117,9 @@
           "type": "txt",
           "folder": "reports",
           "modified": "2024-09-03",
-          "is_clue": false,
-          "clue_id": null,
-          "clue_weight": null,
+          "is_clue": true,
+          "clue_id": "clue_quality_ruled_out",
+          "clue_weight": "supporting",
           "content": "# SUPPLIER QUALITY CORRECTIVE ACTION REPORT\n**Supplier:** Apex Precision Parts\n**Part:** BRK-A-2201\n**Date Opened:** June 12, 2024\n**Date Closed:** August 28, 2024\n\n## ISSUE SUMMARY:\n\nDimensional non-conformance detected in Lot #Q2-4412 (2,400 units). Caliper bore diameter 0.003\" outside tolerance on 7% of inspected units.\n\n**ROOT CAUSE:** Tooling wear on CNC Cell 3. Machine maintenance interval exceeded due to operator scheduling.\n\n## CORRECTIVE ACTION:\n\n  - Cell 3 tooling replaced\n  - Preventive maintenance schedule updated\n  - 100% inspection implemented for 90 days\n  - Lot #Q2-4412 scrapped and replaced at supplier cost\n\n## VERIFICATION:\n\n  Zero non-conformances in 12 subsequent lots (Aug 28 verification).\n\n**STATUS:** CLOSED \u2014 No ongoing quality concern.\n\n> **NOTE:** This Q2 quality event is UNRELATED to the current supply disruption. APP's quality performance since August has been exemplary (PPM = 0)."
         },
         {
@@ -150,9 +150,9 @@
           "type": "txt",
           "folder": "operations",
           "modified": "2024-11-14",
-          "is_clue": false,
-          "clue_id": null,
-          "clue_weight": null,
+          "is_clue": true,
+          "clue_id": "clue_production_exposure",
+          "clue_weight": "primary",
           "content": "# PRODUCTION IMPACT ASSESSMENT \u2014 CRITICAL PRIORITY\n**Prepared by:** Plant Operations, Plants A & B\n**Date:** November 14, 2024\n\n## CURRENT SITUATION:\n\n  **Part at risk:** BRK-A-2201 (Brake Assembly, Hydraulic, Type A)\n  **Supplier:** Apex Precision Parts (SOLE SOURCE)\n  Days since last delivery: 18\n  **Current inventory:** 2,880 units (1.5 days at current consumption rate)\n\n## PRODUCTION STOPPAGE TIMELINE:\n\n  **Plant A buffer exhaustion:** ~44 hours from report generation\n  **Plant B buffer exhaustion:** ~51 hours from report generation\n\n## FINANCIAL EXPOSURE:\n\n  Direct production cost per hour (both plants): $480,000\n  **Daily exposure at stoppage:** $11,520,000\n  **Weekly exposure if unresolved:** $80,640,000\n\n## WORKFORCE IMPACT:\n\n  Workers at risk of temporary layoff:           4,200\n  **Affected downstream operations:** 3 Tier-2 assembly partners\n\n## CUSTOMER COMMITMENTS AT RISK:\n\n  OEM delivery schedule (Model Year 2025):       On notice of delay\n  Contractual penalty exposure (per day):        $750,000 (escalating)\n\n## SCENARIOS:\n\n  Best case (supplier resumes in 24h):   Recoverable with weekend overtime\n  Likely case (72h stoppage):            $34M exposure, customer escalation\n  Worst case (>7 days):                 Force majeure declaration, contract review\n\n> **ACTION REQUIRED:** Immediate executive intervention. Root cause identification and supplier recovery plan needed within 12 hours."
         }
       ]
@@ -280,7 +280,7 @@
           "folder": "policies",
           "modified": "2024-04-10",
           "is_clue": true,
-          "clue_id": "clue_payment_terms_changed",
+          "clue_id": "clue_working_capital_policy",
           "clue_weight": "connector",
           "gate_question": {
             "question": "Treasury's risk flag in the CFO memo was exactly right. Which supplier profile did Treasury specifically identify as most vulnerable to the Net-60 terms change?",

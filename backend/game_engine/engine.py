@@ -17,7 +17,7 @@ class GameEngine:
         self.scenario = scenario
 
     async def create_session(self) -> GameSession:
-        session_id = str(uuid.uuid4())[:8].upper()
+        session_id = uuid.uuid4().hex[:8].upper()
         players = {
             persona_id: PlayerState(persona=persona_id)
             for persona_id in self.scenario["personas"]
@@ -142,6 +142,31 @@ class GameEngine:
                 return session, False, []
 
         return session, False, []
+
+    async def discover_clue_from_scan(
+        self, session_id: str, clue_id: str
+    ) -> tuple[GameSession, bool]:
+        """
+        Force-discover a clue via external QR scan.
+        The physical artifact is considered a "shared" discovery,
+        so we give it to ALL active personas in the session.
+        Returns (session, was_new_discovery).
+        """
+        session = await self.get_session(session_id)
+        if not session:
+            raise ValueError(f"Session {session_id} not found")
+
+        was_new = False
+        for player in session.players.values():
+            if clue_id not in player.clues_discovered:
+                player.clues_discovered.append(clue_id)
+                player.last_activity = datetime.now(timezone.utc)
+                was_new = True
+
+        if was_new:
+            await self._save_session(session)
+
+        return session, was_new
 
     def check_checkpoint(self, session: GameSession) -> bool:
         """Returns True if the checkpoint should fire now (not yet fired, threshold reached)."""

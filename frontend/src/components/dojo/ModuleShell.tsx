@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useLang } from '@/lib/LanguageContext';
 import { getDojoT } from '@/lib/dojo/i18n-dojo';
+import { useDojoProgress } from '@/lib/dojo/progress';
 import { ModuleDef, StepDef, StepType, BELT_COLORS } from '@/lib/dojo/types';
 
 interface Props {
@@ -17,11 +18,11 @@ interface Props {
 
 const TYPE_ICONS: Record<StepType, string> = {
   observation: '👁',
-  simulation:  '⚡',
-  quiz:        '❓',
-  builder:     '🔧',
-  drill:       '🔄',
-  reflection:  '📝',
+  simulation: '⚡',
+  quiz: '❓',
+  builder: '🔧',
+  drill: '🔄',
+  reflection: '📝',
 };
 
 export default function ModuleShell({
@@ -38,9 +39,14 @@ export default function ModuleShell({
 
   const totalSteps = module.steps.length;
   const isLastStep = stepIndex === totalSteps - 1;
-  const beltColor  = BELT_COLORS[module.belt];
-  const stepTitle  = lang === 'ja' ? step.titleJa : step.titleEn;
-  const modTitle   = lang === 'ja' ? module.titleJa : module.titleEn;
+  const beltColor = BELT_COLORS[module.belt];
+  const stepTitle = lang === 'ja' ? step.titleJa : step.titleEn;
+  const modTitle = lang === 'ja' ? module.titleJa : module.titleEn;
+
+  // Belt celebration logic
+  const { progress } = useDojoProgress();
+  // Module 3 completes the White Belt. The Green Belt unlocks at 180 XP (50 + 60 + 70).
+  const justEarnedGreenBelt = isLastStep && isStepDone && progress.xp === 180;
 
   function handleNext() {
     if (isLastStep) {
@@ -114,13 +120,12 @@ export default function ModuleShell({
             {module.steps.map((s, i) => (
               <Link key={s.id} href={`/gemba/${module.id}/${s.id}`} className="flex-1 group">
                 <div
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    i < stepIndex
+                  className={`h-1.5 rounded-full transition-all duration-300 ${i < stepIndex
                       ? 'bg-green-500'
                       : i === stepIndex
-                      ? 'opacity-100'
-                      : 'bg-gray-200'
-                  }`}
+                        ? 'opacity-100'
+                        : 'bg-gray-200'
+                    }`}
                   style={i === stepIndex ? { backgroundColor: beltColor } : undefined}
                 />
               </Link>
@@ -165,6 +170,32 @@ export default function ModuleShell({
           </div>
         </div>
       </footer>
+
+      {/* ── Belt Celebration Overlay ─────────────────────────────────────── */}
+      {justEarnedGreenBelt && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-sm w-full text-center space-y-4 animate-scale-in">
+            <div className="text-6xl mb-2">🎉</div>
+            <h2 className="text-2xl font-bold text-gray-900">
+              {lang === 'en' ? 'White Belt Completed!' : '白帯修了！'}
+            </h2>
+            <p className="text-gray-600">
+              {lang === 'en'
+                ? 'You have mastered the foundations of TPS: Observation, Architecture, and TWI.'
+                : 'TPSの基礎である観察、構造、TWIをマスターしました。'}
+            </p>
+            <div className="w-full h-8 bg-green-500 rounded-md my-6 shadow-inner relative overflow-hidden flex items-center justify-center border-2 border-green-600">
+              <span className="text-white font-bold tracking-widest text-sm z-10 shadow-black drop-shadow-md">GREEN BELT UNLOCKED</span>
+            </div>
+            <button
+              onClick={() => router.push('/gemba')}
+              className="w-full py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-xl font-medium transition-colors"
+            >
+              {lang === 'en' ? 'Continue Journey' : '旅を続ける'}
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

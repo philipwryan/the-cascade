@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useLang } from '@/lib/LanguageContext';
 import { getDojoT } from '@/lib/dojo/i18n-dojo';
+import ZoomableImage from '@/components/dojo/ui/ZoomableImage';
 
 interface Props {
   onComplete: () => void;
@@ -68,17 +69,17 @@ export default function ChalkCircle({ onComplete, alreadyDone }: Props) {
 
         {/* Photo — falls back to text description if image not found */}
         {!imgError ? (
-          <div className="relative rounded-md overflow-hidden bg-gray-900 mb-3">
-            <img
+          <div className="relative rounded-md w-full bg-gray-900 mb-3">
+            <ZoomableImage
               src="/images/dojo/chalk-circle-scene.jpg"
               alt={lang === 'ja' ? '機械加工セル — 07:15 AM' : 'Machining cell — 07:15 AM. Find the waste.'}
-              className="w-full object-cover"
+              className="object-cover"
               style={{ maxHeight: '340px', objectPosition: 'center 30%' }}
               onError={() => setImgError(true)}
             />
             {/* Clock overlay matching the real display in the photo */}
             <div
-              className="absolute top-3 left-3 text-[11px] font-mono font-bold px-2 py-1 rounded"
+              className="absolute top-3 left-3 text-[11px] font-mono font-bold px-2 py-1 rounded pointer-events-none"
               style={{ background: 'rgba(0,0,0,0.72)', color: '#ff3b30', letterSpacing: '0.15em' }}
             >
               07:15 AM
