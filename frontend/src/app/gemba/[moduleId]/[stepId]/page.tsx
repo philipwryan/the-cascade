@@ -19,6 +19,14 @@ import JobBreakdownBuilder from '@/components/dojo/steps/JobBreakdownBuilder';
 import JobMethodsEliminator from '@/components/dojo/steps/JobMethodsEliminator';
 import BranchingScenario from '@/components/dojo/steps/BranchingScenario';
 
+// Module 8: Material & Information Flow (MIFC)
+import MifcIntro from '@/components/dojo/mifc/MifcIntro';
+import MifcSymbolLibrary from '@/components/dojo/mifc/MifcSymbolLibrary';
+import MifcSymbolQuiz from '@/components/dojo/mifc/MifcSymbolQuiz';
+import MifcReadDiagram from '@/components/dojo/mifc/MifcReadDiagram';
+import MifcBuildSteps from '@/components/dojo/mifc/MifcBuildSteps';
+import MifcKaizenDrill from '@/components/dojo/mifc/MifcKaizenDrill';
+
 interface Props {
   params: { moduleId: string; stepId: string };
 }
@@ -105,7 +113,17 @@ export default function StepPage({ params }: Props) {
       if (stepId === 'step-3') return <BranchingScenario {...props} />;
     }
 
-    // Modules 3–14: coming soon placeholder
+    // Module 8: Material & Information Flow (MIFC)
+    if (moduleId === 'module-8') {
+      if (stepId === 'step-1') return <MifcIntro {...props} />;
+      if (stepId === 'step-2') return <MifcSymbolLibrary {...props} />;
+      if (stepId === 'step-3') return <MifcSymbolQuiz {...props} />;
+      if (stepId === 'step-4') return <MifcReadDiagram {...props} />;
+      if (stepId === 'step-5') return <MifcBuildSteps {...props} />;
+      if (stepId === 'step-6') return <MifcKaizenDrill {...props} />;
+    }
+
+    // Modules 4–14: coming soon placeholder
     return (
       <div className="panel p-8 text-center space-y-3">
         <p className="text-3xl">🏭</p>
